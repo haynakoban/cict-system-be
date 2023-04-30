@@ -66,7 +66,7 @@ class UserController extends Controller
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($formFields)) {
+        if (auth()->attempt($formFields)) {
             $request->session()->regenerate();
             $user = auth()->user();
             
