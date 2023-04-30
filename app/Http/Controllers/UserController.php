@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -23,5 +25,29 @@ class UserController extends Controller
             'faculties' => $faculties,
             'checkers' => $checkers,
         ]);
+    }
+
+    public function login($id)
+    {
+        $user = User::where('user_employee_id', $id)->first();
+
+        return $user;
+    }
+
+    public function authenticate(Request $request)
+    {
+        $formFields = $request->validate([
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+
+        if (Auth::attempt($formFields)) {
+            $request->session()->regenerate();
+            $user = auth()->user();
+            
+            return $user;
+        }
+
+        return $user = null;
     }
 }
