@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('semester_id')->constrained()->onDelete('cascade');
             $table->string('room_name');
             $table->string('room_status')->default('available'); // available or borrowed
+            $table->integer('latest_user_id')->nullable();
             $table->timestamps();
         });
     }
