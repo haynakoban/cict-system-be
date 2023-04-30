@@ -62,4 +62,21 @@ class AttendanceController extends Controller
 
         return response()->json(['message' => 'success', 'attendance' => $attendance]);
     }
+
+    public function update(Request $request)
+    {
+        $atteandace = Attendance::where('id', $request->id)->first();
+        
+        if($request->comments){
+            $atteandace->comments = $request->comments;
+        }
+
+        if($request->status){
+            $atteandace->status = $request->status;
+        }
+
+        $atteandace->save();
+
+        return response()->json(['message'=> 'atteandace created']);
+    }
 }
