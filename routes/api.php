@@ -27,9 +27,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/users', 'index')->name('users.index'); // show all faculties and checkers
-    Route::post('/users', 'store')->name('store'); // create new user
-    Route::get('/users/login/{id}', 'login')->name('admin.login'); // show login form
-    Route::post('/users/authenticate', 'authenticate')->name('admin.authenticate'); // user log in
+    Route::post('/users', 'store')->name('users.store'); // create new user
+    Route::get('/users/login/{id}', 'login')->name('users.login'); // show login form
+    Route::post('/users/authenticate', 'authenticate')->name('users.authenticate'); // user log in
 });
 
 Route::controller(SectionController::class)->group(function () {
