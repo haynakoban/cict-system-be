@@ -58,4 +58,20 @@ class RoomController extends Controller
 
         return response()->json(['message' => 'new room created', 'room' => $room]); 
     }
+
+    public function update(Request $request)
+    {
+        $room = Room::where('id', $request->room_id)->first();
+        $room->room_name = $request->room_name;
+        $room->save();
+
+        return response()->json(['message' => 'room updated', 'room' => $room]); 
+    }
+
+    public function delete(Request $request)
+    {
+        Room::where('id', $request->room_id)->delete();
+
+        return response()->json(['message' => 'room deleted']); 
+    }
 }

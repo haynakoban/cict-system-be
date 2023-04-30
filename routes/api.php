@@ -62,6 +62,8 @@ Route::controller(AttendanceController::class)->group(function () {
 Route::controller(RoomController::class)->group(function () {
     Route::get('/rooms', 'index')->name('rooms.index'); // show all rooms - [available or borrowed]
     Route::post('/rooms', 'store')->name('rooms.store'); // store new room
+    Route::post('/rooms/update', 'update')->name('rooms.update'); // update room
+    Route::post('/rooms/delete', 'delete')->name('rooms.delete'); // delete room
 });
 
 Route::controller(KeyHistoryController::class)->group(function () {
