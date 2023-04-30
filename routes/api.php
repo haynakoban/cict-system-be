@@ -43,19 +43,21 @@ Route::controller(SubjectController::class)->group(function () {
 });
 
 Route::controller(SemesterController::class)->group(function () {
-    Route::get('/semesters', 'index')->name('semesters.index'); // // show all semesters
-    Route::post('/semesters', 'store')->name('semesters.store'); // // store new semester
+    Route::get('/semesters', 'index')->name('semesters.index'); // show all semesters
+    Route::post('/semesters', 'store')->name('semesters.store'); // store new semester
+    Route::post('/semesters/update', 'update')->name('semesters.update'); // update semester
+    Route::post('/semesters/delete', 'delete')->name('semesters.delete'); // delete semester
 });
 
 
 Route::controller(AttendanceController::class)->group(function () {
-    Route::get('/attendances', 'index')->name('attendances.index'); // // show all attendances / schedules
-    Route::post('/attendances', 'store')->name('attendances.store'); // // store new attendance/ schedule
+    Route::get('/attendances', 'index')->name('attendances.index'); // show all attendances / schedules
+    Route::post('/attendances', 'store')->name('attendances.store'); // store new attendance / schedule
 });
 
 Route::controller(RoomController::class)->group(function () {
     Route::get('/rooms', 'index')->name('rooms.index'); // show all rooms - [available or borrowed]
-    Route::post('/rooms', 'store')->name('rooms.store'); // // store new room
+    Route::post('/rooms', 'store')->name('rooms.store'); // store new room
 });
 
 Route::controller(KeyHistoryController::class)->group(function () {
