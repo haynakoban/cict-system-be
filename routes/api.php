@@ -58,6 +58,7 @@ Route::controller(AttendanceController::class)->group(function () {
     Route::get('/attendances', 'index')->name('attendances.index'); // show all attendances / schedules
     Route::post('/attendances', 'store')->name('attendances.store'); // store new attendance / schedule
     Route::post('/attendances/update', 'update')->name('attendances.update'); // update attendance / schedule
+    Route::get('/attendances/{id}', 'show')->name('attendances.show'); // show single attendance / schedule
 });
 
 Route::controller(RoomController::class)->group(function () {

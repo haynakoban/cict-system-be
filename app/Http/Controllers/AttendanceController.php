@@ -79,4 +79,21 @@ class AttendanceController extends Controller
 
         return response()->json(['message'=> 'attendance created']);
     }
+
+    public function show($id)
+    {
+        $attendance = DB::table('attendances')
+            ->join('rooms', 'rooms.id', '=', 'attendances.room_id')
+            ->join('users', 'users.id',  '=', 'attendances.user_id')
+            ->join('semesters', 'semesters.id',  '=', 'attendances.semester_id')
+            ->join('subjects', 'subjects.id',  '=', 'attendances.subject_id')
+            ->join('sections', 'sections.id',  '=', 'attendances.section_id')
+            ->select('attendances.id as attendance_id', 'attendances.*', 'rooms.*', 'users.*', 'semesters.*', 'subjects.*', 'sections.*')
+            ->where('users.role_type', 2) // select faculty only
+            ->where('attendances.user_id', $id) // select faculty only
+            ->orderBy('attendances.created_at', 'desc')
+            ->get();
+
+        return response()->json(['attendances' =>  $attendance]);
+    }
 }
