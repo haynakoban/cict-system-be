@@ -23,7 +23,7 @@ class UserFactory extends Factory
             'user_first_name' => $this->faker->firstName(),
             'user_middle_name' => $this->faker->lastName(),
             'user_last_name' => $this->faker->lastName(),
-            'user_username' => $this->faker->userName(),
+            'user_name' => $this->faker->userName(),
             'user_email' => $this->faker->safeEmail(),
             'user_password' => bcrypt('test123'),
             'user_position' => $this->faker->jobTitle(),

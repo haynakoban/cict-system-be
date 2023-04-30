@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('user_first_name');
             $table->string('user_middle_name')->nullable();
             $table->string('user_last_name');
-            $table->string('user_username');
+            $table->string('user_name');
             $table->string('user_email')->unique();
             $table->string('user_password');
             $table->string('user_position')->nullable();
