@@ -40,6 +40,7 @@ class UserController extends Controller
             'user_password' => 'required|min:6',
             'user_position' => ['required'],
             'user_course_program' => ['required'],
+            'user_role_type' => ['required'],
         ]);
 
          // hash password
