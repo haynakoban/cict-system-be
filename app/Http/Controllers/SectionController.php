@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Section;
+use App\Models\Semester;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,7 +16,9 @@ class SectionController extends Controller
                 ->select('sections.id as section_id', 'sections.*', 'semesters.*')
                 ->get();
 
-        return response()->json(['sections' => $sections]);
+        $semesters = Semester::all();
+
+        return response()->json(['sections' => $sections, 'semesters' => $semesters]);
     }
 
     public function store(Request $request)

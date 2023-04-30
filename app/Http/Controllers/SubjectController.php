@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Semester;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,9 @@ class SubjectController extends Controller
                 ->select('subjects.id as subject_id', 'subjects.*', 'semesters.*')
                 ->get();
 
-        return response()->json(['subjects' => $subjects]);
+        $semesters = Semester::all();
+
+        return response()->json(['subjects' => $subjects, 'semesters' => $semesters]);
     }
 
     public function store(Request $request)

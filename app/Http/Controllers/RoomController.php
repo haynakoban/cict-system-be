@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\KeyHistory;
 use App\Models\Room;
+use App\Models\Semester;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -38,10 +39,13 @@ class RoomController extends Controller
                     ->where('users.role_type', 2) // select faculty only
                     ->get();
 
+        $semesters = Semester::all();            
+
         return response()->json([
             'rooms' => $rooms,
             'users' => $users,
             'keys' => $keys,
+            'semesters' => $semesters,
         ]);
     }
 
