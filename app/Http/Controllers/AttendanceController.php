@@ -26,7 +26,8 @@ class AttendanceController extends Controller
         $attendances = DB::table('attendances')
             ->join('rooms', 'rooms.id', '=', 'attendances.room_id')
             ->join('users', 'users.id',  '=', 'attendances.user_id')
-            ->select('attendances.id as attendance_id', 'attendances.*', 'rooms.*', 'users.*')
+            ->join('semesters', 'semesters.id',  '=', 'attendances.semester_id')
+            ->select('attendances.id as attendance_id', 'attendances.*', 'rooms.*', 'users.*', 'semesters.*')
             ->where('users.user_role_type', 2) // select faculty only
             ->orderBy('attendances.created_at', 'desc')
             ->get();
