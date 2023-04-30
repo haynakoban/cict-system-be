@@ -44,19 +44,11 @@ class RoomController extends Controller
 
     public function store(Request $request) {
 
-        $room = Room::where('id', $request->room_id)->first();
-
-        $room->status = $request->room_status == 'available' ? 'borrowed' : 'available';
-        $room->save();
-
-        KeyHistory::create([
-            'room_id' => $request->room_id,
-            'user_id' => $request->user_id,
+        $room = Room::create([
             'semester_id' => $request->semester_id,
-            'key_time' => now('Asia/Manila'),
-            'key_status' => $request->room_status == 'available' ? 'Borrowed' : 'Returned',
+            'room_name' => $request->room_name,
         ]);
 
-        return response()->json(['message' => 'new key created']);
+        return response()->json(['message' => 'new room created', 'room' => $room]); 
     }
 }
