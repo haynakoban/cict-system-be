@@ -11,7 +11,10 @@ class RoomController extends Controller
 {
     public function index()
     {
-        $rooms = Room::all();  
+        $rooms = DB::table('rooms')
+                ->join('semesters', 'semesters.id', '=', 'rooms.semester_id')
+                ->select('rooms.id as room_id', 'rooms.*', 'semesters.*')
+                ->get();
 
         $rooms_id = Room::where('room_status', 'borrowed')
                 ->get()
