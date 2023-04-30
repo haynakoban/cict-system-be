@@ -14,8 +14,8 @@ class KeyHistoryController extends Controller
         $histories = DB::table('key_histories')
             ->join('rooms', 'rooms.id', '=', 'key_histories.room_id')
             ->join('users', 'users.id',  '=', 'key_histories.user_id')
-            ->select('key_histories.id as key_id', 'key_histories.*' , 'rooms.room_name', 'users.user_first_name', 'users.user_last_name')
-            ->where('users.user_role_type', 2)
+            ->select('key_histories.id as key_id', 'key_histories.*' , 'rooms.room_name', 'users.first_name', 'users.last_name')
+            ->where('users.role_type', 2)
             ->get();
 
         return response()->json(['histories' => $histories]);
