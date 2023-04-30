@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KeyHistory;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -39,5 +40,23 @@ class RoomController extends Controller
             'users' => $users,
             'keys' => $keys,
         ]);
+    }
+
+    public function store(Request $request) {
+
+        $room = Room::where('id', $request->room_id)->first();
+
+        $room->status = $request->room_status == 'available' ? 'borrowed' : 'available';
+        $room->save();
+
+        KeyHistory::create([
+            'room_id' => $request->room_id,
+            'user_id' => $request->user_id,
+            'semester_id' => $request->semester_id,
+            'key_time' => now('Asia/Manila'),
+            'key_status' => $request->room_status == 'available' ? 'Borrowed' : 'Returned',
+        ]);
+
+        return response()->json(['message' => 'new key created']);
     }
 }
