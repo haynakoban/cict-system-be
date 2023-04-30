@@ -27,11 +27,11 @@ class AttendanceFactory extends Factory
             'section_id' => Section::factory(),
             'subject_id' => Subject::factory(),
             'semester_id' => Semester::factory(),
-            'attedance_group' => $this->faker->randomElement(['G1', 'G2', 'BOTH']),
-            'attedance_status' => 'Not Visited',
-            'attedance_day' => $this->faker->dayOfWeek(),
-            'attedance_start_time' => $this->faker->time(),
-            'attedance_end_time' => $this->faker->time(),
+            'attendance_group' => $this->faker->randomElement(['G1', 'G2', 'BOTH']),
+            'attendance_status' => 'Not Visited',
+            'attendance_day' => $this->faker->dayOfWeek(),
+            'attendance_start_time' => $this->faker->time(),
+            'attendance_end_time' => $this->faker->time(),
         ];
     }
 }

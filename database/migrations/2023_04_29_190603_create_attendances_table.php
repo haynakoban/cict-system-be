@@ -18,12 +18,12 @@ return new class extends Migration
             $table->foreignId('section_id')->constrained()->onDelete('cascade');
             $table->foreignId('subject_id')->constrained()->onDelete('cascade');
             $table->foreignId('semester_id')->constrained()->onDelete('cascade');
-            $table->string('attedance_group');
-            $table->string('attedance_status')->default('Not Visited'); // Present, Absent, Not Visited
-            $table->string('attedance_day');
-            $table->time('attedance_start_time');
-            $table->time('attedance_end_time');
-            $table->longText('attedance_comments')->nullable();
+            $table->string('attendance_group');
+            $table->string('attendance_status')->default('Not Visited'); // Present, Absent, Not Visited
+            $table->string('attendance_day');
+            $table->time('attendance_start_time');
+            $table->time('attendance_end_time');
+            $table->longText('attendance_comments')->nullable();
             $table->timestamps();
         });
     }
