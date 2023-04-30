@@ -66,10 +66,12 @@ class UserController extends Controller
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($formFields)) {
+        if (auth()->attempt($formFields)) {
             $request->session()->regenerate();
-            $user = auth()->user();
-            
+            $user = User::where('id', auth()->user()->id)->first();
+            $user->status = 'online';
+            $user->save();
+
             return $user;
         }
 
