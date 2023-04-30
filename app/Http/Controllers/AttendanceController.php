@@ -20,7 +20,7 @@ class AttendanceController extends Controller
         $sections = Section::all();
 
         $users = DB::table('users')
-                ->where('users.user_role_type', 2) // select faculty only
+                ->where('users.role_type', 2) // select faculty only
                 ->get();
 
         $attendances = DB::table('attendances')
@@ -28,7 +28,7 @@ class AttendanceController extends Controller
             ->join('users', 'users.id',  '=', 'attendances.user_id')
             ->join('semesters', 'semesters.id',  '=', 'attendances.semester_id')
             ->select('attendances.id as attendance_id', 'attendances.*', 'rooms.*', 'users.*', 'semesters.*')
-            ->where('users.user_role_type', 2) // select faculty only
+            ->where('users.role_type', 2) // select faculty only
             ->orderBy('attendances.created_at', 'desc')
             ->get();
 

@@ -35,7 +35,7 @@ class RoomController extends Controller
                 ->get();
 
         $users = DB::table('users')
-                    ->where('users.user_role_type', 2) // select faculty only
+                    ->where('users.role_type', 2) // select faculty only
                     ->get();
 
         return response()->json([

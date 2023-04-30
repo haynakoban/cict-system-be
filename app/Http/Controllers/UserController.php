@@ -14,11 +14,11 @@ class UserController extends Controller
     {
 
         $faculties = DB::table('users')
-                    ->where('users.user_role_type', 2)
+                    ->where('users.role_type', 2)
                     ->get();
 
         $checkers = DB::table('users')
-                    ->where('users.user_role_type', 3)
+                    ->where('users.role_type', 3)
                     ->get();
 
        
@@ -54,7 +54,7 @@ class UserController extends Controller
 
     public function login($id)
     {
-        $user = User::where('user_employee_id', $id)->first();
+        $user = User::where('employee_id', $id)->first();
 
         return $user;
     }

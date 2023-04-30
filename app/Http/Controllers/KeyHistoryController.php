@@ -25,7 +25,7 @@ class KeyHistoryController extends Controller
     {
         $room = Room::where('id', $id)->first();
 
-        $users = DB::table('users')->where('users.user_role_type', 2)->get();
+        $users = DB::table('users')->where('users.role_type', 2)->get();
 
         return response()->json(['room' => $room, 'users' => $users]);
     }
