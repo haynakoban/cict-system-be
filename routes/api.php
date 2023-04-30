@@ -35,11 +35,15 @@ Route::controller(UserController::class)->group(function () {
 Route::controller(SectionController::class)->group(function () {
     Route::get('/sections', 'index')->name('sections.index'); // // show all sections
     Route::post('/sections', 'store')->name('sections.store'); // // store new section
+    Route::post('/sections/update', 'update')->name('sections.update'); // update section
+    Route::post('/sections/delete', 'delete')->name('sections.delete'); // delete section
 });
 
 Route::controller(SubjectController::class)->group(function () {
     Route::get('/subjects', 'index')->name('subjects.index'); // // show all subjects
     Route::post('/subjects', 'store')->name('subjects.store'); // // store new subject
+    Route::post('/subjects/update', 'update')->name('subjects.update'); // update subject
+    Route::post('/subjects/delete', 'delete')->name('subjects.delete'); // delete subject
 });
 
 Route::controller(SemesterController::class)->group(function () {

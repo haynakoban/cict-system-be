@@ -30,4 +30,20 @@ class SectionController extends Controller
 
         return response()->json(['message' => 'new section created', 'section' => $section]); 
     }
+
+    public function update(Request $request)
+    {
+        $section = Section::where('id', $request->section_id)->first();
+        $section->section_name = $request->section_name;
+        $section->save();
+
+        return response()->json(['message' => 'section updated', 'section' => $section]); 
+    }
+
+    public function delete(Request $request)
+    {
+        Section::where('id', $request->section_id)->delete();
+
+        return response()->json(['message' => 'section deleted']); 
+    }
 }

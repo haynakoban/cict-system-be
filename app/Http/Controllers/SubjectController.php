@@ -30,4 +30,20 @@ class SubjectController extends Controller
 
         return response()->json(['message' => 'new subject created', 'subject' => $subject]); 
     }
+
+    public function update(Request $request)
+    {
+        $subject = Subject::where('id', $request->subject_id)->first();
+        $subject->subject_name = $request->subject_name;
+        $subject->save();
+
+        return response()->json(['message' => 'subject updated', 'subject' => $subject]); 
+    }
+
+    public function delete(Request $request)
+    {
+        Subject::where('id', $request->subject_id)->delete();
+
+        return response()->json(['message' => 'subject deleted']); 
+    }
 }

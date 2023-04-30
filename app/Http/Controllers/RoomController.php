@@ -42,7 +42,7 @@ class RoomController extends Controller
         $semesters = Semester::all();            
 
         return response()->json([
-            'rooms' => [$rooms, $users],
+            'rooms' => $rooms,
             'users' => $users,
             'keys' => $keys,
             'semesters' => $semesters,
