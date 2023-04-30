@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\KeyHistory;
 use App\Models\Room;
+use App\Models\Semester;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,7 +19,9 @@ class KeyHistoryController extends Controller
             ->where('users.role_type', 2)
             ->get();
 
-        return response()->json(['histories' => $histories]);
+        $semesters = Semester::all();
+
+        return response()->json(['histories' => $histories, 'semesters' => $semesters]);
     }
 
     public function show($id)
