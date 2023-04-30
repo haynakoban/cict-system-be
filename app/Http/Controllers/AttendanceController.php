@@ -68,11 +68,11 @@ class AttendanceController extends Controller
         $atteandace = Attendance::where('id', $request->id)->first();
         
         if($request->comments){
-            $atteandace->comments = $request->comments;
+            $atteandace->attendance_comments = $request->comments;
         }
 
         if($request->status){
-            $atteandace->status = $request->status;
+            $atteandace->attendance_status = $request->status;
         }
 
         $atteandace->save();
