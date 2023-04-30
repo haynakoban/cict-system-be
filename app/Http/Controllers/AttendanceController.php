@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attendance;
 use App\Models\Room;
 use App\Models\Section;
 use App\Models\Semester;
@@ -38,5 +39,24 @@ class AttendanceController extends Controller
             'subjects' => $subjects,
             'sections' => $sections,
         ];
+    }
+
+    public function store(Request $request)
+    {
+        $formFields = $request->validate([
+            'user_id' => ['required'],
+            'room_id' => ['required'],
+            'section_id' => ['required'],
+            'subject_id' => ['required'],
+            'semester_id' => ['required'],
+            'attendance_group' => ['required'],
+            'attendance_day' => ['required'],
+            'attendance_start_time' => ['required'],
+            'attendance_end_time' => ['required'],
+        ]);
+
+        $attendance = Attendance::create($formFields);  
+
+        return response()->json(['message' => 'success', 'attendance' => $attendance]);
     }
 }
