@@ -30,6 +30,7 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/users', 'store')->name('users.store'); // create new user
     Route::get('/users/login/{id}', 'login')->name('users.login'); // show login form
     Route::post('/users/authenticate', 'authenticate')->name('users.authenticate'); // user log in
+    Route::post('/users/logout', 'logout')->name('users.logout'); // user log out
 });
 
 Route::controller(SectionController::class)->group(function () {

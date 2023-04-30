@@ -77,4 +77,19 @@ class UserController extends Controller
 
         return $user = null;
     }
+
+    public function logout(Request $request)
+    {
+        $user = User::where('id', $request->id)->first();
+        $user->last_login = now('Asia/Manila');
+        $user->status = 'offline';
+        $user->save();
+
+        auth()->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return response()->json(['message' => 'You have been logged out']);
+    }
 }
