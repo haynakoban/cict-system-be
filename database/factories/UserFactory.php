@@ -18,18 +18,18 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_employee_id' => $this->faker->uuid(),
-            'user_role_type' => $this->faker->numberBetween(1, 3),
-            'user_first_name' => $this->faker->firstName(),
-            'user_middle_name' => $this->faker->lastName(),
-            'user_last_name' => $this->faker->lastName(),
-            'user_name' => $this->faker->userName(),
-            'user_email' => $this->faker->safeEmail(),
-            'user_password' => bcrypt('test123'),
-            'user_position' => $this->faker->jobTitle(),
-            'user_course_program' => $this->faker->randomElement(['BSIT', 'MIT', 'BSCS', 'BSIS']),
-            'user_age' => $this->faker->numberBetween(20, 60),
-            'user_address' => $this->faker->address(),
+            'employee_id' => $this->faker->uuid(),
+            'role_type' => $this->faker->numberBetween(1, 3),
+            'first_name' => $this->faker->firstName(),
+            'middle_name' => $this->faker->lastName(),
+            'last_name' => $this->faker->lastName(),
+            'username' => $this->faker->userName(),
+            'email' => $this->faker->safeEmail(),
+            'password' => bcrypt('test123'),
+            'position' => $this->faker->jobTitle(),
+            'course_program' => $this->faker->randomElement(['BSIT', 'MIT', 'BSCS', 'BSIS']),
+            'age' => $this->faker->numberBetween(20, 60),
+            'address' => $this->faker->address(),
         ];
     }
 

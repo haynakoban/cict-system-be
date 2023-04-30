@@ -31,20 +31,20 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $formFields = $request->validate([ 
-            'user_employee_id' => ['required'],
-            'user_first_name' => ['required'],
-            'user_middle_name' => ['required'],
-            'user_last_name' => ['required'],
-            'user_username' => ['required', 'min:4', 'max:20', Rule::unique('users', 'username')],
-            'user_email' => ['required', 'email', Rule::unique('users', 'email')],
-            'user_password' => 'required|min:6',
-            'user_position' => ['required'],
-            'user_course_program' => ['required'],
-            'user_role_type' => ['required'],
+            'employee_id' => ['required'],
+            'first_name' => ['required'],
+            'middle_name' => ['required'],
+            'last_name' => ['required'],
+            'username' => ['required', 'min:4', 'max:20', Rule::unique('users', 'username')],
+            'email' => ['required', 'email', Rule::unique('users', 'email')],
+            'password' => 'required|min:6',
+            'position' => ['required'],
+            'course_program' => ['required'],
+            'role_type' => ['required'],
         ]);
 
          // hash password
-        $formFields['user_password'] = bcrypt($formFields['user_password']);
+        $formFields['password'] = bcrypt($formFields['password']);
 
         // create new user
         User::create($formFields);

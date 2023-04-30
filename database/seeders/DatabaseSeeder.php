@@ -20,9 +20,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->count(5)->create(['user_role_type' => 1]); // seed admin user
-        User::factory()->count(30)->create(['user_role_type' => 2]); // seed faculty user
-        User::factory()->count(10)->create(['user_role_type' => 3]); // seed checker user
+        User::factory()->count(5)->create(['role_type' => 1]); // seed admin user
+        User::factory()->count(30)->create(['role_type' => 2]); // seed faculty user
+        User::factory()->count(10)->create(['role_type' => 3]); // seed checker user
 
         Semester::factory()->count(4)->create(); // seed semester
 
@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         }
 
         // get all faculties
-        $faculties = User::where('user_role_type', 2)->inRandomOrder()->get();  
+        $faculties = User::where('role_type', 2)->inRandomOrder()->get();  
 
         foreach ($faculties as $faculty) {
 

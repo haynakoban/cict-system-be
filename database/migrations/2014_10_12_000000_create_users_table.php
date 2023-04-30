@@ -13,21 +13,21 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('user_employee_id'); // secondary key
-            $table->integer('user_role_type'); // [1: Admin, 2: Faculty, 3: Checker]
-            $table->string('user_first_name');
-            $table->string('user_middle_name')->nullable();
-            $table->string('user_last_name');
-            $table->string('user_name');
-            $table->string('user_email')->unique();
-            $table->string('user_password');
-            $table->string('user_position')->nullable();
-            $table->text('user_course_program')->nullable();
-            $table->date('user_dob')->nullable(); // alternative $table->string('dob');
-            $table->integer('user_age')->nullable();
-            $table->text('user_address')->nullable();
-            $table->time('user_last_login')->nullable();
-            $table->string('user_status')->default('offline');
+            $table->string('employee_id'); // secondary key
+            $table->integer('role_type'); // [1: Admin, 2: Faculty, 3: Checker]
+            $table->string('first_name');
+            $table->string('middle_name')->nullable();
+            $table->string('last_name');
+            $table->string('username');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('position')->nullable();
+            $table->text('course_program')->nullable();
+            $table->date('dob')->nullable(); // alternative $table->string('dob');
+            $table->integer('age')->nullable();
+            $table->text('address')->nullable();
+            $table->time('last_login')->nullable();
+            $table->string('status')->default('offline');
             $table->timestamps();
         });
     }
