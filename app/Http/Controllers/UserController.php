@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -25,6 +26,29 @@ class UserController extends Controller
             'faculties' => $faculties,
             'checkers' => $checkers,
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        $formFields = $request->validate([ 
+            'user_employee_id' => ['required'],
+            'user_first_name' => ['required'],
+            'user_middle_name' => ['required'],
+            'user_last_name' => ['required'],
+            'user_username' => ['required', 'min:4', 'max:20', Rule::unique('admins', 'username')],
+            'user_email' => ['required', 'email', Rule::unique('admins', 'email')],
+            'user_password' => 'required|min:6',
+            'user_position' => ['required'],
+            'user_course_program' => ['required'],
+        ]);
+
+         // hash password
+        $formFields['user_password'] = bcrypt($formFields['user_password']);
+
+        // create new user
+        User::create($formFields);
+
+        return response()->json(['message'=> 'success']);
     }
 
     public function login($id)
