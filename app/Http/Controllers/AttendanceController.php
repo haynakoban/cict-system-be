@@ -82,7 +82,16 @@ class AttendanceController extends Controller
 
     public function show($id)
     {
-        $attendance = DB::table('attendances')
+         $semesters = Semester::all();
+        $rooms = Room::all();
+        $subjects = Subject::all();
+        $sections = Section::all();
+
+        $users = DB::table('users')
+                ->where('users.role_type', 2) // select faculty only
+                ->get();
+
+        $attendances = DB::table('attendances')
             ->join('rooms', 'rooms.id', '=', 'attendances.room_id')
             ->join('users', 'users.id',  '=', 'attendances.user_id')
             ->join('semesters', 'semesters.id',  '=', 'attendances.semester_id')
@@ -94,6 +103,13 @@ class AttendanceController extends Controller
             ->orderBy('attendances.created_at', 'desc')
             ->get();
 
-        return response()->json(['attendances' =>  $attendance]);
+        return [
+            'attendances' =>  $attendances,
+            'semesters' => $semesters,
+            'users' => $users,
+            'rooms' => $rooms,
+            'subjects' => $subjects,
+            'sections' => $sections,
+        ];
     }
 }
