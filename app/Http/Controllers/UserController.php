@@ -68,8 +68,10 @@ class UserController extends Controller
 
         if (auth()->attempt($formFields)) {
             $request->session()->regenerate();
-            $user = auth()->user();
-            
+            $user = User::where('id', auth()->user()->id)->first();;
+            $user->last_login = now('Asia/Manila');
+            $user->save();
+
             return $user;
         }
 
