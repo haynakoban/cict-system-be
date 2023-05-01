@@ -60,13 +60,12 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
-
-        if ($request->middle_name) $user->middle_name = $request->middle_name;
-        if ($request->position) $user->position = $request->position;
-        if ($request->course_program) $user->course_program = $request->course_program;
-        if ($request->address) $user->address = $request->address;
-        if ($request->age) $user->age = $request->age;
-        if ($request->dob) $user->dob = $request->dob;
+        $user->middle_name = $request->middle_name;
+        $user->position = $request->position;
+        $user->course_program = $request->course_program;
+        $user->address = $request->address;
+        $user->age = $request->age;
+        $user->dob = $request->dob;
 
         $user->save();
 
