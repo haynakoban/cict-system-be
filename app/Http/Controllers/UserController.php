@@ -132,4 +132,26 @@ class UserController extends Controller
 
         }
     }
+
+    public function checkUsername($id)
+    {
+        $user = User::where('username', $id)->first();
+
+        if ($user) {
+            return response()->json(['error' => true]);
+        } else {
+             return response()->json(['error' => false]);
+        }
+    }
+
+    public function checkEmail($id)
+    {
+        $user = User::where('email', $id)->first();
+
+        if ($user) {
+            return response()->json(['error' => true]);
+        } else {
+             return response()->json(['error' => false]);
+        }
+    }
 }
