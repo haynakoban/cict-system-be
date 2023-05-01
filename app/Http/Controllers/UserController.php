@@ -52,6 +52,27 @@ class UserController extends Controller
         return response()->json(['message'=> 'success']);
     }
 
+     public function update(Request $request)
+    {
+        $user = User::where('id', $request->user_id)->first();
+
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+
+        if ($request->middle_name) $user->middle_name = $request->middle_name;
+        if ($request->position) $user->position = $request->position;
+        if ($request->course_program) $user->course_program = $request->course_program;
+        if ($request->address) $user->address = $request->address;
+        if ($request->age) $user->age = $request->age;
+        if ($request->dob) $user->dob = $request->dob;
+
+        $user->save();
+
+        return response()->json(['message'=> 'success', 'user' => $user]);
+    }
+
     public function login($id)
     {
         $user = User::where('employee_id', $id)->first();

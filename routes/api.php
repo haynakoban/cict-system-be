@@ -32,6 +32,7 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/users/authenticate', 'authenticate')->name('users.authenticate'); // user log in
     Route::post('/users/logout', 'logout')->name('users.logout'); // user log out
     Route::post('/users/upload', 'upload')->name('users.upload'); // upload image
+    Route::post('/users/update', 'update')->name('users.update'); // update user
 });
 
 Route::controller(SectionController::class)->group(function () {
