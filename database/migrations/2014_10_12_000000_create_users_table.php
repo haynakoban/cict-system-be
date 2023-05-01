@@ -28,6 +28,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->time('last_login')->nullable();
             $table->string('status')->default('offline');
+            $table->string('image_url')->nullable();
             $table->timestamps();
         });
     }

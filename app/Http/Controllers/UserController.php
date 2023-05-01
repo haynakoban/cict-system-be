@@ -92,4 +92,24 @@ class UserController extends Controller
 
         return response()->json(['message' => 'You have been logged out']);
     }
+
+    public function upload(Request $request)
+    {
+        $user = User::where('id', $request->input('id'))->first();
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file')->store('images', 'public');
+            $user->image_url = $file;
+            $user->save();
+        
+            return response()->json(['message' => 'File uploaded successfully.']);
+            
+        } 
+            
+        else {
+
+            return response()->json(['error' => 'No file uploaded.'], 400);
+
+        }
+    }
 }
